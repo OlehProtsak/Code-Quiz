@@ -1,3 +1,4 @@
+// Array of questions
 const questions = [
     {
         question: 'How can you get the total number of arguments passed to a function?',
@@ -99,12 +100,28 @@ const questions = [
         }
     },
 ];
+// Append question content to the first existing HTML element
+let firstQuestion = document.getElementById('question-title');
+firstQuestion.textContent = questions[0].question;
+let firsDiv = document.getElementById('choices');
 
+for (const [key, value] of Object.entries(questions[0].answers)) {
+    const button = document.createElement('button');
+    button.textContent = value;
+    button.setAttribute('data-answer', 'answer');
+    if (key === 'answerCorrect') {
+        button.setAttribute('data-correct', 'correct');
+    }
+
+    firsDiv.appendChild(button);
+}
+
+// Populate the DOM with all questions, excluding the first one
 let parentElement = document.getElementById('questions');
 
 function createElementsAndInsert() {
 
-    for (let i = 0; i < questions.length; i++) {
+    for (let i = 1; i < questions.length; i++) {
         const div = document.createElement('div');
         div.classList.add('hide');
 
