@@ -1,16 +1,16 @@
 const questions = [
     {
-        queston: 'How can you get the total number of arguments passed to a function?',
+        question: 'How can you get the total number of arguments passed to a function?',
         answers: {
             answer1: 'Using args.length property',
             answerCorrect: 'Using arguments.length property',
             answer3: 'Both of the above.',
-            answer4: 'D - None of the above.',
+            answer4: 'None of the above.',
         }
     },
-    
+
     {
-        queston: 'Which of the following type of variable takes precedence over other if names are same?',
+        question: 'Which of the following type of variable takes precedence over other if names are same?',
         answers: {
             answer1: ' global variable',
             answerCorrect: 'local variable',
@@ -20,7 +20,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following code creates an object?',
+        question: 'Which of the following code creates an object?',
         answers: {
             answer1: 'let book = Object();',
             answerCorrect: 'var book = new Object();',
@@ -30,7 +30,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of Number object returns a string value version of the current number?',
+        question: 'Which of the following function of Number object returns a string value version of the current number?',
         answers: {
             answerCorrect: 'toString()',
             answer2: 'toFixed()',
@@ -40,7 +40,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of String object splits a String object into an array of strings by separating the string into substrings',
+        question: 'Which of the following function of String object splits a String object into an array of strings by separating the string into substrings',
         answers: {
             answer1: 'slice()',
             answerCorrect: 'split()',
@@ -50,7 +50,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of String object returns a string representing the specified object?',
+        question: 'Which of the following function of String object returns a string representing the specified object?',
         answers: {
             answer1: 'toLocaleUpperCase()',
             answer2: 'toUpperCase()',
@@ -60,7 +60,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of String object causes a string to be displayed in the specified color as if it were in a <font color="color"> tag?',
+        question: 'Which of the following function of String object causes a string to be displayed in the specified color as if it were in a <font color="color"> tag?',
         answers: {
             answer1: 'fixed()',
             answerCorrect: 'fontcolor()',
@@ -70,7 +70,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of Array object returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found?',
+        question: 'Which of the following function of Array object returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found?',
         answers: {
             answer1: 'indexOf()',
             answer2: 'join()',
@@ -80,7 +80,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?',
+        question: 'Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?',
         answers: {
             answerCorrect: 'unshift()',
             answer2: 'sort()',
@@ -90,7 +90,7 @@ const questions = [
     },
 
     {
-        queston: 'Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?',
+        question: 'Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?',
         answers: {
             answerCorrect: 'unshift()',
             answer2: 'sort()',
@@ -99,3 +99,42 @@ const questions = [
         }
     },
 ];
+
+let parentElement = document.getElementById('questions');
+
+function createElementsAndInsert() {
+
+    for (let i = 0; i < questions.length; i++) {
+        const div = document.createElement('div');
+        div.classList.add('hide');
+
+
+        const h2 = document.createElement('h2');
+        h2.textContent = questions[i].question;
+
+        const choicesDiv = document.createElement('div');
+        choicesDiv.classList.add('choices');
+
+        for (const [key, value] of Object.entries(questions[i].answers)) {
+            const button = document.createElement('button');
+            button.textContent = value;
+            button.setAttribute('data-answer', 'answer');
+            if (key === 'answerCorrect') {
+                button.setAttribute('data-correct', 'correct');
+            }
+
+            choicesDiv.appendChild(button);
+        }
+
+
+        div.appendChild(h2);
+        div.appendChild(choicesDiv);
+
+
+        parentElement.insertAdjacentElement('afterend', div);
+
+        parentElement = div;
+    }
+}
+
+createElementsAndInsert();
