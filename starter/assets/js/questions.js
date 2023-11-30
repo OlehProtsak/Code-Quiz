@@ -104,13 +104,14 @@ const questions = [
 let firstQuestion = document.getElementById('question-title');
 firstQuestion.textContent = questions[0].question;
 let firsDiv = document.getElementById('choices');
+firsDiv.classList.add('questions');
 
 for (const [key, value] of Object.entries(questions[0].answers)) {
     const button = document.createElement('button');
     button.textContent = value;
-    button.setAttribute('data-answer', 'answer');
+    button.setAttribute('data-type', 'answer');
     if (key === 'answerCorrect') {
-        button.setAttribute('data-correct', 'correct');
+        button.setAttribute('data-result', 'correct');
     }
 
     firsDiv.appendChild(button);
@@ -124,6 +125,7 @@ function createElementsAndInsert() {
     for (let i = 1; i < questions.length; i++) {
         const div = document.createElement('div');
         div.classList.add('hide');
+        div.setAttribute('data-type', 'question');
 
 
         const h2 = document.createElement('h2');
@@ -135,9 +137,9 @@ function createElementsAndInsert() {
         for (const [key, value] of Object.entries(questions[i].answers)) {
             const button = document.createElement('button');
             button.textContent = value;
-            button.setAttribute('data-answer', 'answer');
+            button.setAttribute('data-type', 'answer');
             if (key === 'answerCorrect') {
-                button.setAttribute('data-correct', 'correct');
+                button.setAttribute('data-result', 'correct');
             }
 
             choicesDiv.appendChild(button);
