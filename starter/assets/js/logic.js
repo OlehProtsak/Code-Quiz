@@ -1,32 +1,45 @@
 const allQuestions = document.querySelectorAll('[data-type*=question]');
 const startScreen = document.getElementById('start-screen');
 const endScreen = document.getElementById('end-screen');
+const feedBack = document.getElementById('feedback');
 const container = document.querySelector('.wrapper');
 const timer = document.getElementById('time');
 let currentQuestionIndex = 0;
 let time;
+let intervalId;
 
 
 container.addEventListener('click', (e) => {
     if (e.target.id === 'start') {
         startScreen.classList.add('hide');
-        showQuestion(currentQuestionIndex);
         time = 75;
-        timer.textContent = time;
-    }
-    if (e.target.dataset.result === 'correct') {
-        hideQuestion(currentQuestionIndex);
-        showQuestion(currentQuestionIndex + 1);
-        currentQuestionIndex++;
-        alert('correct');
-    } else if (e.target.dataset.type === 'answer') {
-        hideQuestion(currentQuestionIndex);
-        showQuestion(currentQuestionIndex + 1);
-        currentQuestionIndex++;
-        time -= 5;
+        showQuestion(currentQuestionIndex);
         displayTime(time);
-    }
-    
+        clearInterval(intervalId);
+        startTimer();
+    };
+
+    if (e.target.dataset.type === 'answer') {
+        hideQuestion(currentQuestionIndex);
+
+        if (currentQuestionIndex + 1 < allQuestions.length) {
+
+            showQuestion(currentQuestionIndex + 1);
+            currentQuestionIndex++;
+        } else {
+           
+            clearInterval(intervalId);
+            endScreen.classList.remove('hide');
+        };
+
+        if (e.target.dataset.result === 'correct') {
+            showFeedback('Correct');
+        } else if (e.target.dataset.type === 'answer') {
+            showFeedback('Wrong');
+            time -= 5;
+            displayTime(time);
+        };
+    };
 });
 
 function hideQuestion(currentIndex) {
@@ -35,8 +48,32 @@ function hideQuestion(currentIndex) {
 
 function showQuestion(currentIndex) {
     allQuestions[currentIndex].classList.remove('hide');
-}
+};
 
 function displayTime(time) {
     timer.textContent = time;
-}
+};
+
+function startTimer() {
+    intervalId = setInterval(() => {
+        time--;
+
+        if (time < 0) {
+            clearInterval(intervalId);
+            endScreen.classList.remove('hide');
+            hideQuestion(currentQuestionIndex);
+        } else {
+            displayTime(time);
+        };
+    }, 1000);
+};
+
+
+function showFeedback(string) {
+    feedBack.classList.remove('hide');
+    feedBack.textContent = string;
+    setTimeout(() => {
+        feedBack.classList.add('hide');
+    }, 500);
+};
+

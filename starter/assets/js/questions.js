@@ -89,16 +89,6 @@ const questions = [
             answer4: 'toString()',
         }
     },
-
-    {
-        question: 'Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?',
-        answers: {
-            answerCorrect: 'unshift()',
-            answer2: 'sort()',
-            answer3: 'splice()',
-            answer4: 'toString()',
-        }
-    },
 ];
 // Append question content to the first existing HTML element
 let firstQuestion = document.getElementById('question-title');
