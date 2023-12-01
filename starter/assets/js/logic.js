@@ -4,6 +4,8 @@ const endScreen = document.getElementById('end-screen');
 const feedBack = document.getElementById('feedback');
 const container = document.querySelector('.wrapper');
 const timer = document.getElementById('time');
+const correctAudio = new Audio('assets/sfx/correct.wav');
+const incorrectAudio = new Audio('assets/sfx/incorrect.wav');
 let currentQuestionIndex = 0;
 let time;
 let intervalId;
@@ -12,7 +14,7 @@ let intervalId;
 container.addEventListener('click', (e) => {
     if (e.target.id === 'start') {
         startScreen.classList.add('hide');
-        time = 5;
+        time = 75;
         showQuestion(currentQuestionIndex);
         displayTime(time);
         clearInterval(intervalId);
@@ -34,8 +36,10 @@ container.addEventListener('click', (e) => {
 
         if (e.target.dataset.result === 'correct') {
             showFeedback('Correct');
+            correctAudio.play();
         } else if (e.target.dataset.type === 'answer') {
             showFeedback('Wrong');
+            incorrectAudio.play();
             time -= 5;
             if (time >= 0) {
                 displayTime(time);
