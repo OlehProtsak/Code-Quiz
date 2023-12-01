@@ -12,7 +12,7 @@ let intervalId;
 container.addEventListener('click', (e) => {
     if (e.target.id === 'start') {
         startScreen.classList.add('hide');
-        time = 75;
+        time = 5;
         showQuestion(currentQuestionIndex);
         displayTime(time);
         clearInterval(intervalId);
@@ -37,7 +37,9 @@ container.addEventListener('click', (e) => {
         } else if (e.target.dataset.type === 'answer') {
             showFeedback('Wrong');
             time -= 5;
-            displayTime(time);
+            if (time >= 0) {
+                displayTime(time);
+            };
         };
     };
 });
@@ -59,6 +61,8 @@ function startTimer() {
         time--;
 
         if (time < 0) {
+            time = 0;
+            displayTime(time);
             clearInterval(intervalId);
             endScreen.classList.remove('hide');
             hideQuestion(currentQuestionIndex);
