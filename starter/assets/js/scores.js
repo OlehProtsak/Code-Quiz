@@ -1,11 +1,15 @@
 const ol = document.getElementById('highscores');
 const clearBtn = document.getElementById('clear');
-const results = JSON.parse(localStorage.getItem('highscores')).sort((a,b) => b.score - a.score) || [];
+const results = JSON.parse(localStorage.getItem('highscores')) || [];
 
-for (let i = 0; i < results.length; i++) {
-    const li = document.createElement('li');
-    li.textContent = `${results[i].initials} - ${results[i].score}`;
-    ol.appendChild(li);
+if (results) {
+   const sortedResults = results.sort((a, b) => b.score - a.score);
+
+    for (let i = 0; i < sortedResults.length; i++) {
+        const li = document.createElement('li');
+        li.textContent = `${sortedResults[i].initials} - ${sortedResults[i].score}`;
+        ol.appendChild(li);
+    }
 }
 
 clearBtn.addEventListener('click', () =>{

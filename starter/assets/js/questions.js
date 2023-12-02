@@ -98,16 +98,27 @@ const choices = document.getElementById('choices');
 choices.classList.add('questions');
 firstQuestionDiv.setAttribute('data-type', 'question');
 
-for (const [key, value] of Object.entries(questions[0].answers)) {
+Object.entries(questions[0].answers).forEach(([key, value], index) => {
     const button = document.createElement('button');
-    button.textContent = value;
+    button.innerText = `${index + 1}. ${value}`;
     button.setAttribute('data-type', 'answer');
+    
     if (key === 'answerCorrect') {
         button.setAttribute('data-result', 'correct');
     }
 
-    choices.appendChild(button);
-}
+    choices.appendChild(button); // Corrected the variable name
+});
+// for (const [key, value] of Object.entries(questions[0].answers)) {
+//     const button = document.createElement('button');
+//     button.textContent = value;
+//     button.setAttribute('data-type', 'answer');
+//     if (key === 'answerCorrect') {
+//         button.setAttribute('data-result', 'correct');
+//     }
+
+//     choices.appendChild(button);
+// }
 
 // Populate the DOM with all questions, excluding the first one
 let parentElement = document.getElementById('questions');
@@ -126,16 +137,27 @@ function createElementsAndInsert() {
         const choicesDiv = document.createElement('div');
         choicesDiv.classList.add('choices');
 
-        for (const [key, value] of Object.entries(questions[i].answers)) {
+        Object.entries(questions[i].answers).forEach(([key, value], index) => {
             const button = document.createElement('button');
-            button.textContent = value;
+            button.innerText = `${index + 1}. ${value}`;
             button.setAttribute('data-type', 'answer');
+            
             if (key === 'answerCorrect') {
                 button.setAttribute('data-result', 'correct');
             }
+        
+            choicesDiv.appendChild(button); // Corrected the variable name
+        });
+        // for (const [key, value] of Object.entries(questions[i].answers)) {
+        //     const button = document.createElement('button');
+        //     button.textContent = value;
+        //     button.setAttribute('data-type', 'answer');
+        //     if (key === 'answerCorrect') {
+        //         button.setAttribute('data-result', 'correct');
+        //     }
 
-            choicesDiv.appendChild(button);
-        }
+        //     choicesDiv.appendChild(button);
+        // }
 
 
         div.appendChild(h2);

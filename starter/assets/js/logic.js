@@ -65,7 +65,7 @@ submitBtn.addEventListener('click', () => {
 
         window.location.href = 'highscores.html';
     } else {
-        alert('please enter something');
+        alert('Error: Initials field cannot be empty.');
     }   
 });
 
