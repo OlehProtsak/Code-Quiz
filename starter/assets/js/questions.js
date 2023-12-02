@@ -13,7 +13,7 @@ const questions = [
     {
         question: 'Which of the following type of variable takes precedence over other if names are same?',
         answers: {
-            answer1: ' global variable',
+            answer1: 'global variable',
             answerCorrect: 'local variable',
             answer3: 'Both of the above.',
             answer4: 'None of the above.',
@@ -91,10 +91,12 @@ const questions = [
     },
 ];
 // Append question content to the first existing HTML element
-let firstQuestion = document.getElementById('question-title');
-firstQuestion.textContent = questions[0].question;
-let firsDiv = document.getElementById('choices');
-firsDiv.classList.add('questions');
+const firstQuestionDiv = document.getElementById('questions');
+const firstQuestionTitle = document.getElementById('question-title');
+firstQuestionTitle.textContent = questions[0].question;
+const choices = document.getElementById('choices');
+choices.classList.add('questions');
+firstQuestionDiv.setAttribute('data-type', 'question');
 
 for (const [key, value] of Object.entries(questions[0].answers)) {
     const button = document.createElement('button');
@@ -104,7 +106,7 @@ for (const [key, value] of Object.entries(questions[0].answers)) {
         button.setAttribute('data-result', 'correct');
     }
 
-    firsDiv.appendChild(button);
+    choices.appendChild(button);
 }
 
 // Populate the DOM with all questions, excluding the first one

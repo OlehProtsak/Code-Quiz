@@ -6,9 +6,8 @@ const submitBtn = document.getElementById('submit');
 const feedBack = document.getElementById('feedback');
 const container = document.querySelector('.wrapper');
 const timer = document.getElementById('time');
-const correctAudio = new Audio('assets/sfx/correct.wav');
-const incorrectAudio = new Audio('assets/sfx/incorrect.wav');
-const highscores = [];
+const correctAudio = new Audio('starter/assets/sfx/correct.wav');
+const incorrectAudio = new Audio('starter/assets/sfx/incorrect.wav');
 let currentQuestionIndex = 0;
 let time;
 let intervalId;
@@ -52,14 +51,17 @@ container.addEventListener('click', (e) => {
 });
 
 submitBtn.addEventListener('click', () => {
+    const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+
     if (userInput.value) {
     const newScore = {
-        initial: userInput.value,
+        initials: userInput.value,
         score: time
     };
         highscores.push(newScore);
         localStorage.setItem('highscores', JSON.stringify(highscores));
         endScreen.classList.add('hide');
+        console.log(highscores);
 
         window.location.href = 'highscores.html';
     } else {
