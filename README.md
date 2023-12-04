@@ -43,7 +43,7 @@ The Code Quiz is a web-based quiz application that allows users to test their co
    - Simply modify the questions in the code to suit your preferences.
 
 
-   ![Prompt 'length of password'](starter/assets/images/questions.png.png)
+   ![Prompt 'questions structure'](starter/assets/images/questions.png)
    
 
 ## Credits
