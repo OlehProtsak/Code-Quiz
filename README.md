@@ -17,9 +17,6 @@ The Code Quiz is a web-based quiz application that allows users to test their co
 
 #### Alternatively, utilize my application deployed on GitHub Pages https://olehprotsak.github.io/Code-Quiz/index.html
 
-Certainly! Let's add a fun touch to the "Usage" section with information about sounds during quiz interactions:
-
-```markdown
 ## Usage
 
 1. **Launching the Quiz:**
@@ -43,11 +40,12 @@ Certainly! Let's add a fun touch to the "Usage" section with information about s
 5. **Customization:**
    - Change or add questions without altering the existing structure.
    - Clone the repository to your local machine.
-   - Simply modify the questions in the code to suit your preferences(questions.js)
+   - Simply modify the questions in the code to suit your preferences.
+
 
    ![Prompt 'length of password'](starter/assets/images/questions.png.png)
    
-   
+
 ## Credits
 
 N/A
