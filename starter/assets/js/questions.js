@@ -97,7 +97,7 @@ firstQuestionTitle.textContent = questions[0].question;
 const choices = document.getElementById('choices');
 choices.classList.add('questions');
 firstQuestionDiv.setAttribute('data-type', 'question');
-
+// Loop which create buttons for first div with questions
 Object.entries(questions[0].answers).forEach(([key, value], index) => {
     const button = document.createElement('button');
     button.innerText = `${index + 1}. ${value}`;
@@ -107,20 +107,9 @@ Object.entries(questions[0].answers).forEach(([key, value], index) => {
         button.setAttribute('data-result', 'correct');
     }
 
-    choices.appendChild(button); // Corrected the variable name
+    choices.appendChild(button);
 });
-// for (const [key, value] of Object.entries(questions[0].answers)) {
-//     const button = document.createElement('button');
-//     button.textContent = value;
-//     button.setAttribute('data-type', 'answer');
-//     if (key === 'answerCorrect') {
-//         button.setAttribute('data-result', 'correct');
-//     }
-
-//     choices.appendChild(button);
-// }
-
-// Populate the DOM with all questions, excluding the first one
+// Generate and display a div structure based on the number of questions.
 let parentElement = document.getElementById('questions');
 
 function createElementsAndInsert() {
@@ -146,18 +135,8 @@ function createElementsAndInsert() {
                 button.setAttribute('data-result', 'correct');
             }
         
-            choicesDiv.appendChild(button); // Corrected the variable name
+            choicesDiv.appendChild(button);
         });
-        // for (const [key, value] of Object.entries(questions[i].answers)) {
-        //     const button = document.createElement('button');
-        //     button.textContent = value;
-        //     button.setAttribute('data-type', 'answer');
-        //     if (key === 'answerCorrect') {
-        //         button.setAttribute('data-result', 'correct');
-        //     }
-
-        //     choicesDiv.appendChild(button);
-        // }
 
 
         div.appendChild(h2);

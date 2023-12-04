@@ -1,3 +1,4 @@
+// Variables for program logic
 const allQuestions = document.querySelectorAll('[data-type*=question]');
 const startScreen = document.getElementById('start-screen');
 const endScreen = document.getElementById('end-screen');
@@ -12,7 +13,7 @@ let currentQuestionIndex = 0;
 let time;
 let intervalId;
 
-
+// Add an event listener to the container that depends on which button was clicked to manipulate the DOM structure.
 container.addEventListener('click', (e) => {
     if (e.target.id === 'start') {
         startScreen.classList.add('hide');
@@ -49,7 +50,7 @@ container.addEventListener('click', (e) => {
         };
     };
 });
-
+//Function to manipulate with local storage
 submitBtn.addEventListener('click', () => {
     const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
@@ -69,19 +70,19 @@ submitBtn.addEventListener('click', () => {
     }   
 });
 
-
+// Function to add a class and hide an element.
 function hideQuestion(currentIndex) {
     allQuestions[currentIndex].classList.add('hide');
 };
-
+// Function to add a class and show an element.
 function showQuestion(currentIndex) {
     allQuestions[currentIndex].classList.remove('hide');
 };
-
+// Function to show the remaining time to the user.
 function displayTime(time) {
     timer.textContent = time;
 };
-
+// Function for decreasing the timer.
 function startTimer() {
     intervalId = setInterval(() => {
         time--;
@@ -97,8 +98,7 @@ function startTimer() {
         };
     }, 1000);
 };
-
-
+// Function for displaying a message indicating whether the answer was correct or not.
 function showFeedback(string) {
     feedBack.classList.remove('hide');
     feedBack.textContent = string;
